@@ -23,7 +23,6 @@ def is_nested(line):
                 token = line[0]
         else:
             token = line[0]
-        print(token)
         if token in opening_brackets:
             brackets_stack.append(token)
             count_stack.append(count)
@@ -32,27 +31,21 @@ def is_nested(line):
                 brackets_stack.pop()
                 count_stack.pop()
             else:
-                print('NO ' + str(count))
                 return "NO " + str(count)
         line = line[len(token):]
         count += len(token)
-    if len(brackets_stack) > 0:
-        print('NO ' + str(count_stack[-1]))
-        return "NO " + str(count_stack[-1])
+    if brackets_stack:
+        return "NO " + str(count_stack[0])
     else:
-        print("YES")
         return "YES"
 
 
 def main(args):
     """Open the input file and call `is_nested()` for each line"""
-    with open(args, 'r') as f:
+    with open(args, 'r') as input_file:
         with open('output.txt', 'w') as output_file:
-            text = f.read()
-            for line in text:
-                print(line)
+            for line in input_file:
                 output_file.write(is_nested(line) + '\n')
-                print(is_nested(line))
 
 
 if __name__ == '__main__':
