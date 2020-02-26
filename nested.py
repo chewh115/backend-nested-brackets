@@ -23,6 +23,7 @@ def is_nested(line):
                 token = line[0]
         else:
             token = line[0]
+
         if token in opening_brackets:
             brackets_stack.append(token)
             count_stack.append(count)
@@ -48,5 +49,7 @@ def main(args):
                 output_file.write(is_nested(line) + '\n')
 
 
+main('input.txt')
+
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main(sys.argv[1])
