@@ -17,6 +17,8 @@ def is_nested(line):
     count_stack = []
     count = 0
     while line:
+        count += 1
+        print(count)
         if len(line) > 1:
             token = line[:2]
             if token not in opening_brackets and token not in closing_brackets:
@@ -34,9 +36,9 @@ def is_nested(line):
             else:
                 return "NO " + str(count)
         line = line[len(token):]
-        count += len(token)
+        print(line)
     if brackets_stack:
-        return "NO " + str(count_stack[0])
+        return "NO " + str(count)
     else:
         return "YES"
 
@@ -48,8 +50,6 @@ def main(args):
             for line in input_file:
                 output_file.write(is_nested(line) + '\n')
 
-
-main('input.txt')
 
 if __name__ == '__main__':
     main(sys.argv[1])
