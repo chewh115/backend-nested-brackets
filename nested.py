@@ -14,11 +14,9 @@ def is_nested(line):
     opening_brackets = brackets_dict.keys()
     closing_brackets = brackets_dict.values()
     brackets_stack = []
-    count_stack = []
     count = 0
     while line:
         count += 1
-        print(count)
         if len(line) > 1:
             token = line[:2]
             if token not in opening_brackets and token not in closing_brackets:
@@ -28,18 +26,17 @@ def is_nested(line):
 
         if token in opening_brackets:
             brackets_stack.append(token)
-            count_stack.append(count)
         elif token in closing_brackets:
             if token == brackets_dict[brackets_stack[-1]]:
                 brackets_stack.pop()
-                count_stack.pop()
             else:
                 return "NO " + str(count)
         line = line[len(token):]
-        print(line)
     if brackets_stack:
+        print("NO {}".format(count))
         return "NO " + str(count)
     else:
+        print('YES')
         return "YES"
 
 
